@@ -12,19 +12,6 @@
     </div>
   </header>
 
-  <button :disabled="isButtonDisabled">Button</button>
-  <button :disabled="true">Button</button>
-  <div :class="{active: isActive, 'text-danger': hasError}"></div>
-  <div :class="classObject"></div>
-  <div :class="classObject2"></div>
-
-  <div :style="{color: activeColor, fontSize: fontSize + 'px'}"></div>
-  <div :style="styleClass"></div>
-
-  <li v-for="(item, index) in items">
-    {{ parsentMessage }} - {{ index }} - {{ item.message }}
-  </li>
-
   <RouterView />
 </template>
 
@@ -32,33 +19,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import { computed, reactive, ref } from 'vue';
-
-const isButtonDisabled = ref(false)
-const isActive = ref(false)
-const hasError = ref(true)
-
-const activeColor = ref('red')
-const fontSize = ref(30)
-
-const classObject = reactive({
-  active: true,
-  'text-danger': false
-})
-
-const error = ref(null)
-const classObject2 = computed(() => ({
-  active: isActive.value && !error.value,
-  'text-danger': error.value && error.value.type === 'fatal'
-}))
-
-const styleClass = reactive({
-  color: 'red',
-  fontSize: '13px'
-})
-
-const items = ref([{message: 'Foo'}, {message: 'Bar'}])
-const parsentMessage = ref('Parsent')
 </script>
+
 
 <style scoped>
 header {
