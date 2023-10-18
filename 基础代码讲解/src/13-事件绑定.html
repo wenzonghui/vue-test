@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button onclick="alert('hello')">hello</button>
+        <button v-on:click="sayHello()">hello</button>
+        <button v-on:click="sayHello2">hello</button>
+        <button @click="sayHello2">hello</button>
+        <button @click="sayHello3">hello</button>
+        <button @click="sayHello4('jack', $event)">hello Jack</button>
+    </div>
+
+    <!-- vue代码 -->
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: 'Vue的事件绑定'
+            },
+
+            methods: {
+                sayHello: function () {
+                    alert('Hello')
+                },
+                sayHello2() {
+                    alert('Hello2')
+                },
+                sayHello3(e) {
+                    console.log(e)
+                    alert('Hello3')
+                },
+                sayHello4(name, event) {
+                    console.log(event)
+                    alert('Hello ' + name)
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
