@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="../js/vue.js"></script>
 </head>
+
 <body>
     <div id="app">
         <div>
             <h1>{{msg}}</h1>
             <h1>{{name}}</h1>
+            v-bind: <input type='text' v-bind:value="name1"><br>
+            v-model: <input type="text" v-model:value="name2"><br>
+            <a v-bind:href="url">百度</a>
         </div>
     </div>
 
     <script>
         new Vue({
+            el: '#app',
+
             data: {
                 msg: 'Hello Vue!!!',
-                name: 'kkkkkk'
-            },
-            el: '#app'
+                name: 'kkkkkk',
+                name1: 'zhangsan',
+                name2: 'wangwu',
+                url: 'http://www.baidu.com'
+            }
         })
         // }).$mount('#app')
     </script>
 </body>
+
 </html>
