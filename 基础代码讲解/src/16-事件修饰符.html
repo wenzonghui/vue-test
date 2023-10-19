@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 容器 -->
+        <div>默认事件冒泡，从里到外</div>
+        <div @click="san">
+            <div @click="er">
+                <button @click="yi">默认事件冒泡</button>
+            </div>
+        </div>
+        <br><br>
+
+        <div>事件捕获模式，从外到里</div>
+        <div @click.capture="san">
+            <div @click.capture="er">
+                <button @click.capture="yi">添加事件监听器的时候采用事件捕获模式</button>
+            </div>
+        </div>
+        <br><br>
+
+        <div>self修饰符，只相应自身本身的事件</div>
+        <div @click="san">
+            <div @click.self="er">
+                <button @click.self="yi">只相应自身本身的事件</button>
+            </div>
+        </div>
+        <br><br>
+
+        <div>once修饰符，事件只发生一次，多次触发无反应</div>
+        <button @click="yi">没有once修饰符，可多次触发</button>
+        <button @click.once="yi">有once修饰符，不可多次触发</button>
+        <br><br>
+
+
+        <!-- 容器 -->
+        <div>prevent修饰符，阻止事件的默认行为</div>
+        <a href="http://www.baidu.com" @click="yi">去百度</a><br>
+        <a href="http://www.baidu.com" @click.prevent="yi">去百度</a>
+        <br><br>
+
+        <!-- passive修饰符 -->
+        <div class="divList" @wheel="testPassive">
+            <div class="item">div1</div>
+            <div class="item">div2</div>
+            <div class="item">div3</div>
+        </div>
+        <br><br>
+
+        <!-- passive修饰符 -->
+        <div class="divList" @wheel.passive="testPassive2">
+            <div class="item">div1</div>
+            <div class="item">div2</div>
+            <div class="item">div3</div>
+        </div>
+
+    </div>
+
+
+    <!-- vue代码 -->
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: "Hello World"
+            },
+
+            methods: {
+                yi() {
+                    alert(1)
+                },
+
+                er() {
+                    alert(2)
+                },
+
+                san() {
+                    alert(3)
+                },
+
+                testPassive(event) {
+                    console.log('test passive')
+                    // 阻止事件的默认行为, 滚动条不滚了
+                    event.preventDefault()
+                },
+
+                testPassive2(event) {
+                    for (let i = 0; i < 100000; i++) {
+                        console.log('test passive')
+                    }
+                }
+            }
+        })
+    </script>
+
+    <style>
+        .divList {
+            width: 300px;
+            height: 200px;
+            background-color: cadetblue;
+            overflow: auto;
+        }
+
+        .item {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+
+</body>
+
+</html>
