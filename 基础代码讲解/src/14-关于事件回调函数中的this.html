@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <h1>计数器：{{counter}}</h1>
+        <button v-on:click="counter++">counter++</button>
+        <button v-on:click="counterC">counter函数</button>
+        <button v-on:click="counterC2">counter函数</button>
+    </div>
+
+    <!-- vue代码 -->
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: 'Hello World',
+                counter: 0
+            },
+
+            methods: {
+                counterC: function () {
+                    this.counter++
+                },
+
+                // 箭头函数没有this，他的this是从父级作用域中继承过来的
+                // 当前程序来说，父级作用域是全局作用域：window
+                // methods中不推荐使用
+                counterC2: () => {
+                    console.log(this)
+                    this.counter++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
