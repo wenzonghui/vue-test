@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <div id="app">
+        <h1>{{msg}}</h1>
+        enter: <input type="text" @keyup.enter="getInfo"><br>
+        esc: <input type="text" @keyup.esc="getInfo"><br>
+        delete: <input type="text" @keyup.delete="getInfo"><br>
+        tab:无法触发keyup <input type="text" @keyup.tab="getInfo"><br>
+        tab:只能触发keydown <input type="text" @keydown.tab="getInfo"><br>
+        space: <input type="text" @keyup.space="getInfo"><br>
+        left: <input type="text" @keyup.left="getInfo"><br>
+        right: <input type="text" @keyup.right="getInfo"><br>
+        up: <input type="text" @keyup.up="getInfo"><br>
+        down: <input type="text" @keyup.down="getInfo"><br>
+    </div>
+
+    <!-- vue代码 -->
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: "按键修饰符"
+            },
+
+            methods: {
+                getInfo(event) {
+                    console.log(event.target.value)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
