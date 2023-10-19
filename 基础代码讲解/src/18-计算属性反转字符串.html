@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <div id="app">
+        <h1>{{msg}}</h1>
+        输入的字符串：<input type="text" v-model="info" @keyup="reverseString"><br>
+
+        <div>反转的信息：{{info2}}</div>
+        <div>反转的信息：{{info3}}</div>
+        <div>反转的信息：{{info4}}</div>
+    </div>
+
+    <!-- vue -->
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: "计算属性，反转字符串",
+                info: '',
+                info2: ''
+            },
+
+            // 普通的方法，效率不是很高
+            methods: {
+                reverseString() {
+                    this.info2 = this.info.split('').reverse().join('')
+                }
+            },
+
+            // 使用计算属性，有利于提高程序性能
+            computed: {
+                info3: {
+                    get() {
+                        console.log('getter方法调用了')
+                        return this.info.split('').reverse().join('')
+                    },
+
+                    set(val) {
+                        console.log('set方调用了')
+                        // 计算属性变或不变，取决于原始属性
+                        this.info = val.split('').reverse().join('')
+                    }
+                },
+
+                // 简单写法的计算属性, 不使用set的时候
+                info4() {
+                    return this.info.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
