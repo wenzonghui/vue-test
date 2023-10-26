@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比较大小 computed实现</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <div>优先使用computed</div>
+        <div>异步实现时computed无法实现，只能使用watch</div>
+        <div>什么时候可以使用箭头函数：</div>
+        <div>是vue管理的统一写成普通函数</div>
+        <div>不是vue管理的，统一写成箭头函数</div>
+
+        数值1: <input type="number" v-model="num1"><br>
+        数值2: <input type="number" v-model="num2"><br>
+        比较大小： {{compareResult}}
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: '比较大小 watch实现',
+                num1: 0,
+                num2: 0,
+            },
+
+            computed: {
+                compareResult() {
+                    let result = this.num1 - this.num2
+                    if (result == 0) {
+                        return this.num1 + ' = ' + this.num2
+                    } else if (result > 0) {
+                        return this.num1 + ' > ' + this.num2
+                    } else {
+                        return this.num1 + ' < ' + this.num2
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
