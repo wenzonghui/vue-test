@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class绑定</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+
+        <!-- 静态绑定 -->
+        <div class="static a b c">静态绑定</div><br>
+
+        <!-- 动态绑定  字符串形式-->
+        <div class="static" :class="c1">动态绑定 字符串形式</div><br>
+
+        <!-- 动态绑定  对象形式-->
+        <div class="static" :class="myClass">动态绑定 对象形式</div><br>
+
+        <!-- 动态绑定  数组形式-->
+        <div class="static" :class="['a', 'b', 'c']">动态绑定 数组形式</div><br>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: 'class绑定',
+                c1: 'c',
+                myClass: {
+                    'a': true,
+                    'b': false,
+                    'c': true
+                }
+            }
+        })
+    </script>
+
+    <style>
+        .static {
+            border: 2px solid black;
+        }
+
+        .a {
+            color: red;
+        }
+
+        .b {
+            background-color: green;
+        }
+
+        .c {
+            width: 200px;
+            height: 200px
+        }
+    </style>
+</body>
+
+</html>
