@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+
+        <!-- 静态列表 -->
+        <ul>
+            <li>张三</li>
+            <li>里斯</li>
+            <li>王武</li>
+        </ul>
+
+        <!-- 动态列表 -->
+        <ul>
+            <li v-for="name in names">{{name}}</li>
+        </ul>
+
+        <!-- 动态列表 -->
+        <ul>
+            <li v-for="(vip,index) in vips">
+                会员名：{{vip.name}},
+                id: {{vip.id}},
+                age: {{vip.age}}
+            </li>
+        </ul>
+
+        <!-- 遍历为表格 -->
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>会员名</th>
+                <th>年龄</th>
+                <th>选择</th>
+            </tr>
+
+            <tr v-for="(vip, index) in vips">
+                <td>{{index+1}}</td>
+                <td>{{vip.name}}</td>
+                <td>{{vip.age}}</td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
+
+        <h2>遍历对象的属性</h2>
+        <ul>
+            <li v-for="(prop,propName) in user">{{propName}}: {{prop}}</li>
+        </ul>
+
+        <h2>遍历字符串</h2>
+        <ul>
+            <li v-for="(ss,index) in strr">{{index}}: {{ss}}</li>
+        </ul>
+
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: '列表渲染',
+                names: ['luce', 'jiack', 'ma'],
+                strr: 'Happy',
+                vips: [
+                    { id: '111', name: 'jack', age: 20 },
+                    { id: '211', name: 'ma', age: 24 },
+                    { id: '311', name: 'lucy', age: 25 }
+                ],
+                user: {
+                    age: 43,
+                    gender: '男',
+                    happy: 'yes'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
