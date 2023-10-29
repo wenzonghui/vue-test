@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button @click="counterplus">点我加一</button><br>
+        <div>{{counter}}</div>
+
+        <!-- 如果是奇数 -->
+        <div v-if="counter%2==1" class="borderr">
+            奇数
+        </div>
+
+        <!-- 如果是偶数 -->
+        <div v-if="counter%2==0" class="borderr">
+            偶数
+        </div>
+
+        输入温度（摄氏度）<input type="number" v-model="temnumber">
+        <div>
+            <div v-if="temnumber>=30">炎热</div>
+            <div v-else-if="temnumber>=15">凉爽</div>
+            <div v-else>寒冷</div>
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+
+            data: {
+                msg: '条件渲染',
+                counter: 0,
+                temnumber: 0
+            },
+
+            methods: {
+                counterplus() {
+                    this.counter++
+                }
+            }
+        })
+    </script>
+
+    <style>
+        .borderr {
+            border: 3px solid red;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</body>
+
+</html>
